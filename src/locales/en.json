@@ -1,0 +1,148 @@
+{
+  "nav": {
+    "projects": "Projects",
+    "skills": "Skills",
+    "career": "Career",
+    "contact": "Contact"
+  },
+  "hero": {
+    "badge": "Active since Dec 2023",
+    "title1": "Ever-Growing",
+    "title2": "Frontend Developer",
+    "subtitle_prefix": " for",
+    "subtitle_suffix": "Optimal User Experience Design",
+    "cta_portfolio": "View Portfolio",
+    "cta_contact": "Contact Me",
+    "tech_label": "TECH STACK"
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "Projects crafted with user experience as the top priority.",
+    "subtitle2": "Explore problems solved using cutting-edge frontend technologies.",
+    "filter": "Filter:",
+    "all": "All",
+    "viewCode": "View Code",
+    "liveDemo": "Live Demo",
+    "items": {
+      "devStudyHub": {
+        "title": "Dev Study Planner",
+        "description": "A study planner web application for developers. Systematically manage learning plans and track progress."
+      },
+      "raonaria": {
+        "title": "Raonaria",
+        "description": "A team project built with Vue.js. Gained experience in component design and state management through collaboration."
+      },
+      "air": {
+        "title": "Air",
+        "description": "A Vue.js-based web project. Implemented user-friendly interfaces using modern frontend technologies."
+      },
+      "dwEssong": {
+        "title": "DW-essong",
+        "description": "A web project based on HTML/CSS/JavaScript. Implemented various scripting features using web fundamentals."
+      },
+      "toy": {
+        "title": "Toy Project",
+        "description": "A collection of toy projects for experimenting with and learning various frontend technologies."
+      }
+    }
+  },
+  "skills": {
+    "title": "Tech Stack",
+    "subtitle": "Core technology stack for building user-centered interfaces.",
+    "subtitle2": "Pursuing deep expertise by staying up-to-date with the latest trends through continuous learning.",
+    "tools_title": "Tools & Collaboration",
+    "levels": {
+      "expert": "Expert",
+      "proficient": "Proficient",
+      "capable": "Capable"
+    },
+    "descriptions": {
+      "react": "Skilled in state management and component architecture for large-scale applications, with extensive performance optimization experience.",
+      "vue": "Proficient in Vue 2/3 Composition API, writing intuitive and maintainable code.",
+      "rn": "Experienced in cross-platform app development, understanding native module integration and deployment processes."
+    }
+  },
+  "career": {
+    "title": "Career History",
+    "subtitle": "A record of continuous growth and challenges",
+    "summary": "Career Summary",
+    "total_projects": "Total Projects",
+    "total_projects_unit": "",
+    "active_period": "Active Period",
+    "active_period_unit": "mo+",
+    "core_skills": "Core Skills",
+    "download_resume": "Download Resume",
+    "career_start": "Dec 2023 - Career Start",
+    "now": "Now",
+    "experiences": {
+      "freelancer": {
+        "title": "Frontend Freelancer",
+        "subtitle": "Personal Projects & Outsourced Development",
+        "period": "2024.03 - Present",
+        "description": "Developing web applications for diverse clients using React and Vue.js. Focused on user-experience-centered interface design and performance optimization, actively adopting modern web technologies.",
+        "achievements": [
+          "E-commerce platform dashboard UI renewal & 30% performance improvement",
+          "Responsive corporate portfolio site (Next.js)",
+          "Reusable custom hooks & component library"
+        ]
+      },
+      "intern": {
+        "title": "Tech Startup Intern",
+        "subtitle": "FutureWave Inc.",
+        "period": "2024.01 - 2024.02",
+        "description": "Participated in developing an internal admin page at an early-stage startup. Gained understanding of state management patterns and component design through the Vue.js ecosystem.",
+        "achievements": [
+          "Intranet board module with Vue 3 & Pinia",
+          "REST API integration & data visualization charts (Chart.js)"
+        ]
+      },
+      "start": {
+        "title": "Career Start",
+        "subtitle": "Frontend Development Beginner",
+        "period": "2023.12",
+        "description": "Completed foundational studies in HTML, CSS, and JavaScript, beginning the journey as a frontend developer. Deployed first personal toy projects while deeply exploring web fundamentals.",
+        "achievements": [
+          "Todo List & weather info web app (OpenWeatherMap API)",
+          "Started version control learning with Git/GitHub"
+        ]
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Project inquiries, job offers, or even a casual coffee chat are all welcome.",
+    "subtitle2": "Looking for a partner to grow together?",
+    "form_title": "Send a Message",
+    "name": "Name",
+    "name_placeholder": "John Doe",
+    "email": "Email",
+    "message": "Message",
+    "message_placeholder": "Shall we talk about a project?",
+    "send": "Send",
+    "sending": "Sending...",
+    "send_success": "Sent!",
+    "send_error": "Failed to send. Please try again.",
+    "info_title": "Contact Info"
+  },
+  "theme": {
+    "mode": "Mode",
+    "color": "Color",
+    "system": "System",
+    "light": "Light",
+    "dark": "Dark",
+    "blue": "Blue",
+    "violet": "Violet",
+    "rose": "Rose",
+    "emerald": "Emerald",
+    "orange": "Orange",
+    "cyan": "Cyan"
+  },
+  "footer": {
+    "copyright": "© 2024 Frontend Developer Portfolio"
+  },
+  "lang": {
+    "label": "Language",
+    "ko": "한국어",
+    "en": "English"
+  }
+}

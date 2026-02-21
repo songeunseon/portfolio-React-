@@ -1,4 +1,8 @@
+import { useTranslation } from 'react-i18next'
+
 export default function Footer() {
+  const { t } = useTranslation()
+
   return (
     <footer className="xl:hidden py-8 border-t border-slate-200 dark:border-white/5 bg-white/50 dark:bg-background-dark text-center">
       <div className="flex justify-center gap-6 mb-4">
@@ -12,7 +16,7 @@ export default function Footer() {
           <span className="material-symbols-outlined">alternate_email</span>
         </a>
       </div>
-      <p className="text-slate-400 dark:text-slate-600 text-xs">&copy; 2024 Frontend Developer Portfolio</p>
+      <p className="text-slate-400 dark:text-slate-600 text-xs">{t('footer.copyright')}</p>
     </footer>
   )
 }

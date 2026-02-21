@@ -1,4 +1,6 @@
-import { useState, type FormEvent } from 'react'
+import { useState, useRef, type FormEvent } from 'react'
+import { useTranslation } from 'react-i18next'
+import emailjs from '@emailjs/browser'
 
 interface ContactLink {
   icon: string
@@ -12,30 +14,23 @@ const contactLinks: ContactLink[] = [
   {
     icon: 'mail',
     label: 'Email',
-    value: 'hello@developer.com',
+    value: 'ttioni_v0v@naver.com',
     hoverColor: 'group-hover:text-primary',
-    href: 'mailto:hello@developer.com',
-  },
-  {
-    icon: 'work',
-    label: 'LinkedIn',
-    value: '@frontend-dev',
-    hoverColor: 'group-hover:text-[#0077b5]',
-    href: '#',
+    href: 'mailto:ttioni_v0v@naver.com',
   },
   {
     icon: 'code',
     label: 'GitHub',
-    value: '@devportfolio',
+    value: '@songeunseon',
     hoverColor: 'group-hover:text-slate-900 dark:group-hover:text-white',
-    href: '#',
+    href: 'https://github.com/songeunseon',
   },
   {
     icon: 'photo_camera',
     label: 'Instagram',
-    value: '@dev_daily',
+    value: '@sil____ver.s',
     hoverColor: 'group-hover:text-[#E1306C]',
-    href: '#',
+    href: 'https://instagram.com/sil____ver.s',
   },
 ]
 
@@ -43,14 +38,40 @@ export default function Contact() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
+  const [sending, setSending] = useState(false)
+  const [sent, setSent] = useState(false)
+  const formRef = useRef<HTMLFormElement>(null)
+  const { t } = useTranslation()
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
+    if (!formRef.current || sending) return
+
+    setSending(true)
+    emailjs
+      .sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+      )
+      .then(() => {
+        setSent(true)
+        setName('')
+        setEmail('')
+        setMessage('')
+        setTimeout(() => setSent(false), 3000)
+      })
+      .catch((err) => {
+        console.error('EmailJS error:', err)
+        alert(t('contact.send_error'))
+      })
+      .finally(() => setSending(false))
   }
 
   return (
-    <main className="flex-grow flex items-center justify-center px-6 py-12 relative">
-      <div className="max-w-[1280px] w-full flex flex-col gap-10">
+    <main className="grow flex items-center justify-center px-6 py-12 relative">
+      <div className="max-w-7xl w-full flex flex-col gap-10">
         {/* Header */}
         <div
           className="flex flex-col gap-4 text-center md:text-left mb-8"
@@ -60,12 +81,12 @@ export default function Contact() {
             <span className="material-symbols-outlined text-4xl md:text-6xl text-primary">
               mail
             </span>
-            연락처
+            {t('contact.title')}
           </h1>
           <p className="text-slate-500 dark:text-slate-400 max-w-2xl text-lg font-light leading-relaxed mx-auto md:mx-0">
-            프로젝트 문의, 채용 제안 또는 가벼운 커피챗도 환영합니다.
+            {t('contact.subtitle')}
             <br className="hidden md:block" />
-            함께 성장할 파트너를 찾으시나요?
+            {t('contact.subtitle2')}
           </p>
         </div>
 
@@ -75,34 +96,38 @@ export default function Contact() {
           <div className="lg:col-span-3 bg-white dark:bg-surface-dark border border-slate-200 dark:border-white/5 rounded-2xl p-8 md:p-10 shadow-xl backdrop-blur-sm">
             <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-3">
               <span className="material-symbols-outlined text-primary">mail</span>
-              메시지 보내기
+              {t('contact.form_title')}
             </h2>
 
-            <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
+            <form ref={formRef} className="flex flex-col gap-6" onSubmit={handleSubmit}>
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="flex flex-col gap-2">
                   <label className="text-sm font-medium text-slate-600 dark:text-slate-300 ml-1" htmlFor="name">
-                    이름
+                    {t('contact.name')}
                   </label>
                   <input
                     id="name"
+                    name="from_name"
                     type="text"
-                    placeholder="홍길동"
+                    placeholder={t('contact.name_placeholder')}
                     value={name}
                     onChange={(e) => setName(e.target.value)}
+                    required
                     className="w-full bg-slate-50 dark:bg-background-dark/50 border border-slate-200 dark:border-white/10 rounded-lg px-4 py-3.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
                   />
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="text-sm font-medium text-slate-600 dark:text-slate-300 ml-1" htmlFor="email">
-                    이메일
+                    {t('contact.email')}
                   </label>
                   <input
                     id="email"
+                    name="from_email"
                     type="email"
                     placeholder="example@email.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    required
                     className="w-full bg-slate-50 dark:bg-background-dark/50 border border-slate-200 dark:border-white/10 rounded-lg px-4 py-3.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
                   />
                 </div>
@@ -110,24 +135,27 @@ export default function Contact() {
 
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-slate-600 dark:text-slate-300 ml-1" htmlFor="message">
-                  메시지
+                  {t('contact.message')}
                 </label>
                 <textarea
                   id="message"
-                  placeholder="프로젝트에 대해 이야기해 볼까요?"
+                  name="message"
+                  placeholder={t('contact.message_placeholder')}
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
+                  required
                   className="w-full bg-slate-50 dark:bg-background-dark/50 border border-slate-200 dark:border-white/10 rounded-lg px-4 py-3.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all h-40 resize-none"
                 />
               </div>
 
               <button
-                type="button"
-                className="mt-4 w-full h-14 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white text-base font-bold rounded-lg transition-all shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-0.5 flex items-center justify-center gap-2 group"
+                type="submit"
+                disabled={sending}
+                className="mt-4 w-full h-14 bg-linear-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 disabled:opacity-50 disabled:cursor-not-allowed text-white text-base font-bold rounded-lg transition-all shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-0.5 flex items-center justify-center gap-2 group"
               >
-                보내기
+                {sent ? t('contact.send_success') : sending ? t('contact.sending') : t('contact.send')}
                 <span className="material-symbols-outlined text-[20px] group-hover:translate-x-1 transition-transform">
-                  send
+                  {sent ? 'check_circle' : 'send'}
                 </span>
               </button>
             </form>
@@ -140,7 +168,7 @@ export default function Contact() {
                 <span className="material-symbols-outlined text-secondary">
                   connect_without_contact
                 </span>
-                연락처 정보
+                {t('contact.info_title')}
               </h2>
 
               <div className="flex flex-col gap-4">
