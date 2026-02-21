@@ -1,5 +1,6 @@
 import { Button } from '@heroui/react'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 interface TechIcon {
   icon: string
@@ -9,6 +10,7 @@ interface TechIcon {
 
 export default function Hero() {
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   const techIcons: TechIcon[] = [
     { icon: 'code_blocks', label: 'React', hoverColor: 'group-hover:text-accent' },
@@ -29,24 +31,25 @@ export default function Hero() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-secondary" />
           </span>
-          <span className="text-xs font-medium text-slate-500 dark:text-slate-300 tracking-wide uppercase">활동 시작 2023.12</span>
+          <span className="text-xs font-medium text-slate-500 dark:text-slate-300 tracking-wide uppercase">{t('hero.badge')}</span>
         </div>
 
         {/* Headline */}
         <div className="flex flex-col gap-6 max-w-5xl">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-slate-900 dark:text-white leading-[1.1] tracking-tight dark:mix-blend-screen dark:drop-shadow-2xl">
-            끊임없이 진화하는
+            {t('hero.title1')}
             <br className="hidden md:block" />
             <span className="text-transparent bg-clip-text bg-linear-to-r from-slate-900 via-slate-700 to-slate-500 dark:from-white dark:via-slate-200 dark:to-slate-400">
-              프론트엔드 개발자
+              {t('hero.title2')}
             </span>
           </h1>
           <p className="text-lg md:text-xl text-slate-500 dark:text-slate-400 max-w-3xl mx-auto font-light leading-relaxed">
             <span className="text-accent font-medium">React</span>,{' '}
             <span className="text-secondary font-medium">Vue.js</span>,{' '}
-            <span className="text-primary font-medium">React Native</span>를 활용한
+            <span className="text-primary font-medium">React Native</span>
+            {t('hero.subtitle_prefix')}
             <br className="hidden md:block" />
-            최적의 사용자 경험 설계
+            {t('hero.subtitle_suffix')}
           </p>
         </div>
 
@@ -57,7 +60,7 @@ export default function Hero() {
             size="lg"
             onPress={() => navigate('/projects')}
           >
-            포트폴리오 보기
+            {t('hero.cta_portfolio')}
             <span className="material-symbols-outlined text-[20px]">visibility</span>
           </Button>
           <Button
@@ -66,14 +69,14 @@ export default function Hero() {
             size="lg"
             onPress={() => navigate('/contact')}
           >
-            문의하기
+            {t('hero.cta_contact')}
             <span className="material-symbols-outlined text-[20px]">mail</span>
           </Button>
         </div>
 
         {/* Tech Stack Icons */}
         <div className="pt-8 md:pt-12 border-t border-slate-200 dark:border-white/5 w-full max-w-lg mt-4">
-          <p className="text-slate-400 dark:text-slate-500 text-xs uppercase tracking-widest mb-6 font-semibold">사용 기술</p>
+          <p className="text-slate-400 dark:text-slate-500 text-xs uppercase tracking-widest mb-6 font-semibold">{t('hero.tech_label')}</p>
           <div className="flex justify-center items-center gap-8 text-slate-400">
             {techIcons.map((tech) => (
               <div key={tech.label} className="flex flex-col items-center gap-2 group cursor-default relative">

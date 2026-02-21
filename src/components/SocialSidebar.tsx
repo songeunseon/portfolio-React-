@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import ThemeSettings from './ThemeSettings'
 import logoPng from '../assets/logo.png'
 
@@ -17,13 +18,6 @@ interface SocialLink {
   href: string
   hoverColor: string
 }
-
-const navItems: NavItem[] = [
-  { icon: 'folder_special', label: '프로젝트', path: '/projects', hoverColor: 'text-primary' },
-  { icon: 'layers', label: '기술 스택', path: '/skills', hoverColor: 'text-secondary' },
-  { icon: 'timeline', label: '경력', path: '/career', hoverColor: 'text-accent' },
-  { icon: 'mail', label: '연락처', path: '/contact', hoverColor: 'text-white dark:text-white' },
-]
 
 const socialLinks: SocialLink[] = [
   { icon: 'code', label: 'GitHub', href: '#', hoverColor: 'text-white' },
@@ -115,6 +109,14 @@ function SidebarSocialItem({ icon, label, href, hoverColor }: SocialLink) {
 export default function SocialSidebar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const location = useLocation()
+  const { t } = useTranslation()
+
+  const navItems: NavItem[] = [
+    { icon: 'folder_special', label: t('nav.projects'), path: '/projects', hoverColor: 'text-primary' },
+    { icon: 'layers', label: t('nav.skills'), path: '/skills', hoverColor: 'text-secondary' },
+    { icon: 'timeline', label: t('nav.career'), path: '/career', hoverColor: 'text-accent' },
+    { icon: 'mail', label: t('nav.contact'), path: '/contact', hoverColor: 'text-white dark:text-white' },
+  ]
 
   function isActive(path: string) {
     return location.pathname === path
@@ -132,7 +134,7 @@ export default function SocialSidebar() {
         {/* Navigation Links */}
         <div className="flex flex-col gap-5 items-center mb-6">
           {navItems.map((item) => (
-            <SidebarNavItem key={item.label} {...item} />
+            <SidebarNavItem key={item.path} {...item} />
           ))}
         </div>
 
@@ -156,14 +158,6 @@ export default function SocialSidebar() {
 
         {/* Bottom Line */}
         <div className="w-px h-16 bg-slate-300 dark:bg-white/20" />
-      </div>
-
-      {/* Desktop Right Scroll Indicator */}
-      <div className="hidden xl:flex fixed right-8 bottom-12 flex-col gap-2 items-center z-20 animate-bounce">
-        <span className="text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-widest rotate-90 origin-right translate-x-3 mb-8">
-          Scroll
-        </span>
-        <span className="material-symbols-outlined text-slate-400 dark:text-slate-500">arrow_downward</span>
       </div>
 
       {/* Mobile/Tablet Floating Menu Button */}
@@ -217,7 +211,7 @@ export default function SocialSidebar() {
               <nav className="p-3">
                 {navItems.map((link) => (
                   <Link
-                    key={link.label}
+                    key={link.path}
                     to={link.path}
                     className={`flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium transition-all ${
                       isActive(link.path)
