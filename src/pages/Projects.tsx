@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Button } from '@heroui/react'
+import { useTranslation } from 'react-i18next'
 
 interface ProjectTag {
   label: string
@@ -8,127 +9,107 @@ interface ProjectTag {
 
 interface ProjectLink {
   icon: string
-  label: string
+  labelKey: string
+  href: string
 }
 
 interface Project {
-  image: string
   alt: string
   tags: ProjectTag[]
-  title: string
+  titleKey: string
+  descriptionKey: string
   hoverColor: string
   glowGradient: string
-  description: string
   links: ProjectLink[]
   category: string
+  github: string
 }
 
 const projects: Project[] = [
   {
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDHMQKQevo82B9Psk_jedlpVF0bL9FuOQ05jH2tZ1LSuwwVyJEZc9tb4f4FfcGN192ZkDIGixeel8_PezjK4uI7KojBKSlanWrMeA98jFEbufXV8QbqqoDsIF_qMGyZnopymgAmdEHXlqMYZ0YWEwqM6Om8vS_74MolyaP59pZ63HXdxIzh0oJfBoRI-gu0kAVAT0TKzg79JG77xZwpHNLuuvlI140-ErC-Al_AzlXf8qIEKCPPqpr1vCEz-runjemtgXRjg_DjxF8',
-    alt: 'Dashboard Project',
+    alt: 'dev-study-hub',
     tags: [
-      { label: 'React', color: 'accent' },
-      { label: 'Dashboard', color: 'slate' },
+      { label: 'TypeScript', color: 'accent' },
+      { label: 'Planner', color: 'slate' },
     ],
-    title: '금융 데이터 시각화 대시보드',
-    hoverColor: 'group-hover:text-accent',
-    glowGradient: 'from-primary/20 via-transparent to-secondary/20',
-    description: '복잡한 금융 데이터를 실시간 차트로 시각화하여 사용자가 직관적으로 자산을 관리할 수 있도록 돕는 대시보드입니다. Recharts 라이브러리를 최적화하여 렌더링 성능을 개선했습니다.',
-    links: [
-      { icon: 'code', label: '코드 보기' },
-      { icon: 'visibility', label: '라이브 데모' },
-    ],
-    category: 'React',
-  },
-  {
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBLK28lX_2wMg-fCql8mQgVoFDXPp5L3hldlL8ddzW2Kn5a38dXupuHXpJN8B-2qThwLVzKjRLBi9-AF-f1rLTF-Zl1tx8f8vMX68M2izFpYa-Onz1mGJbR4INEEWvJL7qV3lGNKGPlw-hTW2OpCyt4JN48X9XkpuruUgGYLx6lg661GzVTnLUVQS_nkh5ZzGu3md_z7MnJm_b-X1jl4pAx080A12BRBHGTjVWgbOogiOrx1ov-My3EqoIeTAM5jLz8_Kt1SYugw5s',
-    alt: 'E-commerce Project',
-    tags: [
-      { label: 'Vue.js', color: 'secondary' },
-      { label: 'E-Commerce', color: 'slate' },
-    ],
-    title: '프리미엄 의류 쇼핑몰',
-    hoverColor: 'group-hover:text-secondary',
-    glowGradient: 'from-secondary/20 via-transparent to-primary/20',
-    description: 'Vue 3와 Pinia를 활용한 상태 관리로 장바구니 기능을 고도화한 이커머스 플랫폼입니다. 결제 프로세스를 간소화하여 구매 전환율을 15% 상승시켰습니다.',
-    links: [
-      { icon: 'code', label: '코드 보기' },
-      { icon: 'visibility', label: '라이브 데모' },
-    ],
-    category: 'Vue.js',
-  },
-  {
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCdWM_0GD2ubGr3igsL3TeUYWbUo1h5USqrvJHp5Uhffjtfsks7QN76vx1DLqDohfA2omVxi4apwXJQiCn8xLQq0ggiSuXGyjTim8iNMgBt0Q42cmCVVeX4KzJ2I8_TDsQcJaXEGO3GIoI_-STRYdWgRxXvXb_6107oZkAKEY5zJJgFyhZJqI9dKBWVLgz1vmmIz7DjvF1boZlvj3LjOBjMPa-OnIdUrNghhxo6-RwTBktpjG5JNx9RANXvj7z015LQeTutD3opsX0',
-    alt: 'Mobile App Project',
-    tags: [
-      { label: 'React Native', color: 'primary' },
-      { label: 'Mobile', color: 'slate' },
-    ],
-    title: '헬스케어 트래킹 앱',
-    hoverColor: 'group-hover:text-primary',
-    glowGradient: 'from-primary/20 via-transparent to-accent/20',
-    description: '사용자의 운동 기록과 건강 데이터를 추적하는 크로스 플랫폼 모바일 애플리케이션입니다. 네이티브 모듈 연동을 통해 블루투스 기기와의 연결 안정성을 확보했습니다.',
-    links: [
-      { icon: 'code', label: '코드 보기' },
-      { icon: 'smartphone', label: '앱 스토어' },
-    ],
-    category: 'React Native',
-  },
-  {
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAjFx6aq4VFzHSkvcXg283s9qCWlMTdUmFPOa52DfW1wYGbJkNY55--HqU5TA5nI8OpzWSb8vOyhCWt-AzHcB_TL5rgrkqIGF6j7GQlkZ2n2woTzw4JV27wD3PBTE_wXTX0SQjFAG3nVIz2dv5H-5V8xTApJ1Zde2hmNB7wEF2VpQdrTRYK67xe-8WwN2LQKuYCFEJM68keOX8KQUt4H6Bneg8s3fcqDW0PXgdEPPNg30X_P4uPqvwpXyI38S0iSm-_VKWK6ZW7kr4',
-    alt: 'Corporate Website',
-    tags: [
-      { label: 'React', color: 'accent' },
-      { label: 'Web', color: 'slate' },
-    ],
-    title: '스타트업 기업 소개 사이트',
+    titleKey: 'projects.items.devStudyHub.title',
+    descriptionKey: 'projects.items.devStudyHub.description',
     hoverColor: 'group-hover:text-accent',
     glowGradient: 'from-accent/20 via-transparent to-primary/20',
-    description: 'Next.js를 활용하여 SEO를 최적화하고, 인터랙티브한 웹 애니메이션을 적용하여 브랜드 이미지를 강화한 기업 공식 홈페이지입니다.',
     links: [
-      { icon: 'code', label: '코드 보기' },
-      { icon: 'visibility', label: '라이브 데모' },
+      { icon: 'code', labelKey: 'projects.viewCode', href: 'https://github.com/songeunseon/dev-study-hub' },
+      { icon: 'visibility', labelKey: 'projects.liveDemo', href: 'https://dev-study-hub.vercel.app' },
     ],
-    category: 'React',
+    category: 'TypeScript',
+    github: 'https://github.com/songeunseon/dev-study-hub',
   },
   {
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBUJCOHQcuaC1gGD7DqXpEhZypYb2jha7GrvuOPAETQMB8_0BcJW5BA-dJwinMqsAoLkNhDhionjVydyj4CTNnBsqOpkjN1q985uLaUcjsHP2K0B82Y6FO0YsGvZ8vf_vYEuSrmSOTWKbFYk5fiCdNQp5lAfGEwNK827kaSS8Ia-iBJrecXaoG3XkokUqr_g4-f04tlBCLHw_1UTW-385tqFXfu-KXNaXCKVdMlTiww449FtxDy-NCXUs8FjQEpz5ZzOkSnd6eLa2c',
-    alt: 'Admin Panel',
+    alt: 'Raonaria',
     tags: [
-      { label: 'Vue.js', color: 'secondary' },
-      { label: 'Admin', color: 'slate' },
+      { label: 'Vue', color: 'secondary' },
+      { label: 'Team', color: 'slate' },
     ],
-    title: '콘텐츠 관리 시스템 (CMS)',
+    titleKey: 'projects.items.raonaria.title',
+    descriptionKey: 'projects.items.raonaria.description',
     hoverColor: 'group-hover:text-secondary',
-    glowGradient: 'from-secondary/20 via-transparent to-accent/20',
-    description: '관리자가 손쉽게 콘텐츠를 작성하고 배포할 수 있는 CMS를 구축했습니다. WYSIWYG 에디터를 커스터마이징하여 사용성을 극대화했습니다.',
+    glowGradient: 'from-secondary/20 via-transparent to-primary/20',
     links: [
-      { icon: 'code', label: '코드 보기' },
-      { icon: 'visibility', label: '라이브 데모' },
+      { icon: 'code', labelKey: 'projects.viewCode', href: 'https://github.com/songeunseon/Raonaria' },
+      { icon: 'visibility', labelKey: 'projects.liveDemo', href: 'https://raonaria.vercel.app' },
     ],
     category: 'Vue.js',
+    github: 'https://github.com/songeunseon/Raonaria',
   },
   {
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA-qVeVbRNmxjTRiakOe6OWRd7pXgesbu3cL20HhU0SBJa9C_gQtIT4M1MxLmQ34KkhB1JdIrw0jCaTPZiW1iS5itMle4mEGFdRgia83sYmDaCgPSpvA7LVLRqdcPjf3nJt0idmLooghm6D9esJbX-Y_TDPeRx_UctiLK8uMuAlQjEm59qjuIsu6553eYJ0V300QJqjlkcJXPFEx73SQdse2yCAUsN012jRGGEIN9FoF78GgRRx1OZT7zKOInjD73nHFmPp4_6hY1A',
-    alt: 'Code Refactor',
+    alt: 'air',
     tags: [
-      { label: 'TS', color: 'white' },
-      { label: 'Tool', color: 'slate' },
+      { label: 'Vue', color: 'secondary' },
+      { label: 'Web', color: 'slate' },
     ],
-    title: '개발자 생산성 도구',
-    hoverColor: 'group-hover:text-slate-900 dark:group-hover:text-white',
-    glowGradient: 'from-primary/20 via-transparent to-white/10',
-    description: 'TypeScript로 작성된 코드 스니펫 관리 도구입니다. Electron을 사용하여 데스크탑 앱으로 패키징하였으며, 오프라인 접근성을 지원합니다.',
+    titleKey: 'projects.items.air.title',
+    descriptionKey: 'projects.items.air.description',
+    hoverColor: 'group-hover:text-secondary',
+    glowGradient: 'from-secondary/20 via-transparent to-accent/20',
     links: [
-      { icon: 'code', label: '코드 보기' },
-      { icon: 'download', label: '다운로드' },
+      { icon: 'code', labelKey: 'projects.viewCode', href: 'https://github.com/songeunseon/air' },
+      { icon: 'visibility', labelKey: 'projects.liveDemo', href: 'https://air-three-rho.vercel.app' },
     ],
-    category: 'Other',
+    category: 'Vue.js',
+    github: 'https://github.com/songeunseon/air',
+  },
+  {
+    alt: 'DW-essong',
+    tags: [
+      { label: 'HTML', color: 'primary' },
+      { label: 'Script', color: 'slate' },
+    ],
+    titleKey: 'projects.items.dwEssong.title',
+    descriptionKey: 'projects.items.dwEssong.description',
+    hoverColor: 'group-hover:text-primary',
+    glowGradient: 'from-primary/20 via-transparent to-accent/20',
+    links: [
+      { icon: 'code', labelKey: 'projects.viewCode', href: 'https://github.com/songeunseon/DW-essong' },
+    ],
+    category: 'HTML/CSS',
+    github: 'https://github.com/songeunseon/DW-essong',
+  },
+  {
+    alt: 'toy',
+    tags: [
+      { label: 'CSS', color: 'primary' },
+      { label: 'Toy', color: 'slate' },
+    ],
+    titleKey: 'projects.items.toy.title',
+    descriptionKey: 'projects.items.toy.description',
+    hoverColor: 'group-hover:text-primary',
+    glowGradient: 'from-primary/20 via-transparent to-secondary/20',
+    links: [
+      { icon: 'code', labelKey: 'projects.viewCode', href: 'https://github.com/songeunseon/toy' },
+    ],
+    category: 'HTML/CSS',
+    github: 'https://github.com/songeunseon/toy',
   },
 ]
-
-const filters = ['전체', 'React', 'Vue.js', 'React Native']
 
 function getTagClasses(color: string): string {
   switch (color) {
@@ -146,9 +127,12 @@ function getTagClasses(color: string): string {
 }
 
 export default function Projects() {
-  const [activeFilter, setActiveFilter] = useState('전체')
+  const { t } = useTranslation()
+  const [activeFilter, setActiveFilter] = useState(t('projects.all'))
 
-  const filtered = activeFilter === '전체'
+  const filters = [t('projects.all'), 'Vue.js', 'TypeScript', 'HTML/CSS']
+
+  const filtered = activeFilter === t('projects.all')
     ? projects
     : projects.filter((p) => p.category === activeFilter)
 
@@ -161,18 +145,18 @@ export default function Projects() {
             <span className="material-symbols-outlined text-4xl md:text-6xl text-primary">
               folder_special
             </span>
-            작업물
+            {t('projects.title')}
           </h1>
           <p className="text-slate-500 dark:text-slate-400 max-w-xl text-lg font-light leading-relaxed">
-            사용자 경험을 최우선으로 생각하며 제작한 프로젝트들입니다.{' '}
+            {t('projects.subtitle')}{' '}
             <br className="hidden md:block" />
-            최신 프론트엔드 기술을 활용하여 해결한 문제들을 확인해보세요.
+            {t('projects.subtitle2')}
           </p>
         </div>
 
         {/* Filters */}
         <div className="flex flex-wrap items-center gap-2">
-          <span className="text-slate-400 dark:text-slate-500 text-sm font-medium mr-2">필터:</span>
+          <span className="text-slate-400 dark:text-slate-500 text-sm font-medium mr-2">{t('projects.filter')}</span>
           {filters.map((filter) => (
             <Button
               key={filter}
@@ -194,7 +178,7 @@ export default function Projects() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {filtered.map((project) => (
           <div
-            key={project.title}
+            key={project.alt}
             className="project-card group relative rounded-2xl overflow-hidden glass-card transition-all duration-300 hover:-translate-y-2"
           >
             {/* Glow Effect */}
@@ -203,14 +187,11 @@ export default function Projects() {
             />
 
             <div className="relative z-10">
-              {/* Image */}
-              <div className="aspect-video w-full overflow-hidden border-b border-slate-200 dark:border-white/5">
-                <img
-                  alt={project.alt}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  src={project.image}
-                />
-                <div className="absolute inset-0 bg-background-light/20 dark:bg-background-dark/20 group-hover:bg-transparent transition-colors duration-300" />
+              {/* Icon Header */}
+              <div className="aspect-video w-full overflow-hidden border-b border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-background-dark/50 flex items-center justify-center">
+                <span className="material-symbols-outlined text-[64px] text-slate-300 dark:text-slate-600 group-hover:text-primary transition-colors duration-300">
+                  code_blocks
+                </span>
               </div>
 
               {/* Content */}
@@ -227,31 +208,38 @@ export default function Projects() {
                       </span>
                     ))}
                   </div>
-                  <a className="text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors" href="#">
+                  <a
+                    className="text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors"
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <span className="material-symbols-outlined text-[20px]">open_in_new</span>
                   </a>
                 </div>
 
                 {/* Title */}
                 <h3 className={`text-xl font-bold text-slate-900 dark:text-white mb-2 ${project.hoverColor} transition-colors`}>
-                  {project.title}
+                  {t(project.titleKey)}
                 </h3>
 
                 {/* Description */}
                 <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6 line-clamp-2">
-                  {project.description}
+                  {t(project.descriptionKey)}
                 </p>
 
                 {/* Action Links */}
                 <div className="flex items-center gap-4 pt-4 border-t border-slate-200 dark:border-white/5">
                   {project.links.map((link) => (
                     <a
-                      key={link.label}
+                      key={link.labelKey}
                       className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
-                      href="#"
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <span className="material-symbols-outlined text-[16px]">{link.icon}</span>
-                      {link.label}
+                      {t(link.labelKey)}
                     </a>
                   ))}
                 </div>
@@ -259,19 +247,6 @@ export default function Projects() {
             </div>
           </div>
         ))}
-      </div>
-
-      {/* Load More */}
-      <div className="mt-16 text-center">
-        <Button
-          className="inline-flex items-center gap-2 bg-transparent hover:bg-slate-100 dark:hover:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white px-8 py-3 rounded-full text-sm font-bold group"
-          variant="bordered"
-        >
-          더 많은 프로젝트 보기
-          <span className="material-symbols-outlined text-[18px] group-hover:translate-y-1 transition-transform">
-            expand_more
-          </span>
-        </Button>
       </div>
     </main>
   )
