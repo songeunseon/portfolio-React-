@@ -1,33 +1,28 @@
 import { useState, useEffect } from 'react'
 import { Popover, PopoverTrigger, PopoverContent } from '@heroui/react'
-
-interface Mode {
-  key: string
-  icon: string
-  label: string
-}
+import { useTranslation } from 'react-i18next'
 
 interface ColorPreset {
   key: string
-  label: string
+  labelKey: string
   primary: string
   secondary: string
   accent: string
 }
 
-const modes: Mode[] = [
-  { key: 'system', icon: 'desktop_windows', label: '시스템' },
-  { key: 'light', icon: 'light_mode', label: '라이트' },
-  { key: 'dark', icon: 'dark_mode', label: '다크' },
+const modeKeys = [
+  { key: 'system', icon: 'desktop_windows', labelKey: 'theme.system' },
+  { key: 'light', icon: 'light_mode', labelKey: 'theme.light' },
+  { key: 'dark', icon: 'dark_mode', labelKey: 'theme.dark' },
 ]
 
 const colorPresets: ColorPreset[] = [
-  { key: 'blue', label: '블루', primary: '#2525f4', secondary: '#41b883', accent: '#61dafb' },
-  { key: 'violet', label: '바이올렛', primary: '#7c3aed', secondary: '#a78bfa', accent: '#c4b5fd' },
-  { key: 'rose', label: '로즈', primary: '#e11d48', secondary: '#fb7185', accent: '#fda4af' },
-  { key: 'emerald', label: '에메랄드', primary: '#059669', secondary: '#34d399', accent: '#6ee7b7' },
-  { key: 'orange', label: '오렌지', primary: '#ea580c', secondary: '#fb923c', accent: '#fdba74' },
-  { key: 'cyan', label: '시안', primary: '#0891b2', secondary: '#22d3ee', accent: '#67e8f9' },
+  { key: 'blue', labelKey: 'theme.blue', primary: '#2525f4', secondary: '#41b883', accent: '#61dafb' },
+  { key: 'violet', labelKey: 'theme.violet', primary: '#7c3aed', secondary: '#a78bfa', accent: '#c4b5fd' },
+  { key: 'rose', labelKey: 'theme.rose', primary: '#e11d48', secondary: '#fb7185', accent: '#fda4af' },
+  { key: 'emerald', labelKey: 'theme.emerald', primary: '#059669', secondary: '#34d399', accent: '#6ee7b7' },
+  { key: 'orange', labelKey: 'theme.orange', primary: '#ea580c', secondary: '#fb923c', accent: '#fdba74' },
+  { key: 'cyan', labelKey: 'theme.cyan', primary: '#0891b2', secondary: '#22d3ee', accent: '#67e8f9' },
 ]
 
 function getSystemTheme(): 'dark' | 'light' {
@@ -53,6 +48,8 @@ function applyColors(preset: ColorPreset) {
 export default function ThemeSettings() {
   const [mode, setMode] = useState(() => localStorage.getItem('theme-mode') || 'dark')
   const [colorKey, setColorKey] = useState(() => localStorage.getItem('theme-color') || 'blue')
+  const { t, i18n } = useTranslation()
+  const currentLang = i18n.language
 
   useEffect(() => {
     applyMode(mode)
@@ -83,12 +80,39 @@ export default function ThemeSettings() {
       </PopoverTrigger>
       <PopoverContent className="bg-white dark:bg-surface-dark border border-slate-200 dark:border-white/10 rounded-xl p-0 w-65 shadow-2xl">
         <div className="p-4">
+          {/* Language Toggle */}
+          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3">
+            {t('lang.label')}
+          </p>
+          <div className="flex gap-1 mb-5">
+            <button
+              onClick={() => { i18n.changeLanguage('ko'); localStorage.setItem('lang', 'ko') }}
+              className={`flex-1 px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
+                currentLang === 'ko'
+                  ? 'bg-primary/15 text-primary border border-primary/30'
+                  : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 border border-transparent'
+              }`}
+            >
+              {t('lang.ko')}
+            </button>
+            <button
+              onClick={() => { i18n.changeLanguage('en'); localStorage.setItem('lang', 'en') }}
+              className={`flex-1 px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
+                currentLang === 'en'
+                  ? 'bg-primary/15 text-primary border border-primary/30'
+                  : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 border border-transparent'
+              }`}
+            >
+              {t('lang.en')}
+            </button>
+          </div>
+
           {/* Mode Selection */}
           <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3">
-            모드
+            {t('theme.mode')}
           </p>
           <ul className="flex flex-col gap-1 mb-5">
-            {modes.map((m) => (
+            {modeKeys.map((m) => (
               <li key={m.key}>
                 <button
                   onClick={() => setMode(m.key)}
@@ -99,7 +123,7 @@ export default function ThemeSettings() {
                   }`}
                 >
                   <span className="material-symbols-outlined text-[18px]">{m.icon}</span>
-                  <span>{m.label}</span>
+                  <span>{t(m.labelKey)}</span>
                 </button>
               </li>
             ))}
@@ -107,7 +131,7 @@ export default function ThemeSettings() {
 
           {/* Color Selection */}
           <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3">
-            컬러
+            {t('theme.color')}
           </p>
           <ul className="flex flex-col gap-1">
             {colorPresets.map((preset) => (
@@ -134,7 +158,7 @@ export default function ThemeSettings() {
                       style={{ backgroundColor: preset.accent }}
                     />
                   </div>
-                  <span>{preset.label}</span>
+                  <span>{t(preset.labelKey)}</span>
                 </button>
               </li>
             ))}
