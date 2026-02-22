@@ -2,6 +2,12 @@ import { useState } from 'react'
 import { Button } from '@heroui/react'
 import { useTranslation } from 'react-i18next'
 
+import devStudyHubImg from '../assets/project/dev-study-hub.png'
+import raonariaImg from '../assets/project/raonaria.png'
+import airImg from '../assets/project/air.png'
+import dwImg from '../assets/project/dw.png'
+import toyImg from '../assets/project/toy.png'
+
 interface ProjectTag {
   label: string
   color: string
@@ -15,6 +21,7 @@ interface ProjectLink {
 
 interface Project {
   alt: string
+  image: string
   tags: ProjectTag[]
   titleKey: string
   descriptionKey: string
@@ -28,9 +35,10 @@ interface Project {
 const projects: Project[] = [
   {
     alt: 'dev-study-hub',
+    image: devStudyHubImg,
     tags: [
-      { label: 'TypeScript', color: 'accent' },
-      { label: 'Planner', color: 'slate' },
+      { label: 'React', color: 'accent' },
+      { label: 'TypeScript', color: 'primary' },
     ],
     titleKey: 'projects.items.devStudyHub.title',
     descriptionKey: 'projects.items.devStudyHub.description',
@@ -40,14 +48,15 @@ const projects: Project[] = [
       { icon: 'code', labelKey: 'projects.viewCode', href: 'https://github.com/songeunseon/dev-study-hub' },
       { icon: 'visibility', labelKey: 'projects.liveDemo', href: 'https://dev-study-hub.vercel.app' },
     ],
-    category: 'TypeScript',
+    category: 'React',
     github: 'https://github.com/songeunseon/dev-study-hub',
   },
   {
     alt: 'Raonaria',
+    image: raonariaImg,
     tags: [
       { label: 'Vue', color: 'secondary' },
-      { label: 'Team', color: 'slate' },
+      { label: 'JavaScript', color: 'slate' },
     ],
     titleKey: 'projects.items.raonaria.title',
     descriptionKey: 'projects.items.raonaria.description',
@@ -57,31 +66,34 @@ const projects: Project[] = [
       { icon: 'code', labelKey: 'projects.viewCode', href: 'https://github.com/songeunseon/Raonaria' },
       { icon: 'visibility', labelKey: 'projects.liveDemo', href: 'https://raonaria.vercel.app' },
     ],
-    category: 'Vue.js',
+    category: 'Vue',
     github: 'https://github.com/songeunseon/Raonaria',
   },
   {
     alt: 'air',
+    image: airImg,
     tags: [
-      { label: 'Vue', color: 'secondary' },
-      { label: 'Web', color: 'slate' },
+      { label: 'React', color: 'accent' },
+      { label: 'TypeScript', color: 'primary' },
     ],
     titleKey: 'projects.items.air.title',
     descriptionKey: 'projects.items.air.description',
-    hoverColor: 'group-hover:text-secondary',
-    glowGradient: 'from-secondary/20 via-transparent to-accent/20',
+    hoverColor: 'group-hover:text-accent',
+    glowGradient: 'from-accent/20 via-transparent to-primary/20',
     links: [
       { icon: 'code', labelKey: 'projects.viewCode', href: 'https://github.com/songeunseon/air' },
       { icon: 'visibility', labelKey: 'projects.liveDemo', href: 'https://air-three-rho.vercel.app' },
     ],
-    category: 'Vue.js',
+    category: 'React',
     github: 'https://github.com/songeunseon/air',
   },
   {
     alt: 'DW-essong',
+    image: dwImg,
     tags: [
       { label: 'HTML', color: 'primary' },
-      { label: 'Script', color: 'slate' },
+      { label: 'CSS', color: 'secondary' },
+      { label: 'JavaScript', color: 'slate' },
     ],
     titleKey: 'projects.items.dwEssong.title',
     descriptionKey: 'projects.items.dwEssong.description',
@@ -89,15 +101,18 @@ const projects: Project[] = [
     glowGradient: 'from-primary/20 via-transparent to-accent/20',
     links: [
       { icon: 'code', labelKey: 'projects.viewCode', href: 'https://github.com/songeunseon/DW-essong' },
+      { icon: 'visibility', labelKey: 'projects.liveDemo', href: 'https://dw-essong-portfolio.vercel.app' },
     ],
-    category: 'HTML/CSS',
+    category: 'HTML/CSS/JS',
     github: 'https://github.com/songeunseon/DW-essong',
   },
   {
     alt: 'toy',
+    image: toyImg,
     tags: [
-      { label: 'CSS', color: 'primary' },
-      { label: 'Toy', color: 'slate' },
+      { label: 'HTML', color: 'primary' },
+      { label: 'CSS', color: 'secondary' },
+      { label: 'JavaScript', color: 'slate' },
     ],
     titleKey: 'projects.items.toy.title',
     descriptionKey: 'projects.items.toy.description',
@@ -105,8 +120,9 @@ const projects: Project[] = [
     glowGradient: 'from-primary/20 via-transparent to-secondary/20',
     links: [
       { icon: 'code', labelKey: 'projects.viewCode', href: 'https://github.com/songeunseon/toy' },
+      { icon: 'visibility', labelKey: 'projects.liveDemo', href: 'https://toy-blond.vercel.app' },
     ],
-    category: 'HTML/CSS',
+    category: 'HTML/CSS/JS',
     github: 'https://github.com/songeunseon/toy',
   },
 ]
@@ -130,19 +146,19 @@ export default function Projects() {
   const { t } = useTranslation()
   const [activeFilter, setActiveFilter] = useState(t('projects.all'))
 
-  const filters = [t('projects.all'), 'Vue.js', 'TypeScript', 'HTML/CSS']
+  const filters = [t('projects.all'), 'Vue', 'React', 'React Native', 'HTML/CSS/JS']
 
   const filtered = activeFilter === t('projects.all')
     ? projects
     : projects.filter((p) => p.category === activeFilter)
 
   return (
-    <main className="grow w-full max-w-7xl mx-auto px-6 py-12 relative">
+    <main className="grow w-full max-w-7xl mx-auto px-6 py-16 relative">
       {/* Page Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+      <div className="flex flex-col gap-8 mb-16">
         <div style={{ animation: 'fadeIn 0.5s ease-out' }}>
           <h1 className="text-3xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-4 mb-4">
-            <span className="material-symbols-outlined text-4xl md:text-6xl text-primary">
+            <span className="material-symbols-outlined text-4xl md:text-6xl text-primary shrink-0">
               folder_special
             </span>
             {t('projects.title')}
@@ -187,11 +203,13 @@ export default function Projects() {
             />
 
             <div className="relative z-10">
-              {/* Icon Header */}
-              <div className="aspect-video w-full overflow-hidden border-b border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-background-dark/50 flex items-center justify-center">
-                <span className="material-symbols-outlined text-[64px] text-slate-300 dark:text-slate-600 group-hover:text-primary transition-colors duration-300">
-                  code_blocks
-                </span>
+              {/* Image Header */}
+              <div className="aspect-video w-full overflow-hidden border-b border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-background-dark/50">
+                <img
+                  src={project.image}
+                  alt={project.alt}
+                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                />
               </div>
 
               {/* Content */}
@@ -229,7 +247,7 @@ export default function Projects() {
                 </p>
 
                 {/* Action Links */}
-                <div className="flex items-center gap-4 pt-4 border-t border-slate-200 dark:border-white/5">
+                <div className="flex items-center gap-4 pt-4 border-t border-slate-200 dark:border-white/10">
                   {project.links.map((link) => (
                     <a
                       key={link.labelKey}

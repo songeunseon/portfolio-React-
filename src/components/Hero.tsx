@@ -1,11 +1,23 @@
 import { Button } from '@heroui/react'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import reactSvg from '../assets/skills-icon/react.svg'
+import vuePng from '../assets/skills-icon/vue.png'
+import expoPng from '../assets/skills-icon/expo.png'
+import tailwindPng from '../assets/skills-icon/tailwind.png'
+import zustandPng from '../assets/skills-icon/zustand.png'
+import threePng from '../assets/skills-icon/three.png'
+import firebasePng from '../assets/skills-icon/firebase.png'
+import bootstrapPng from '../assets/skills-icon/bootstrap.png'
+import vercelPng from '../assets/skills-icon/vercel.png'
+import figmaPng from '../assets/skills-icon/figma.png'
+import githubPng from '../assets/skills-icon/github.png'
+import reactNativePng from '../assets/skills-icon/react-native.png'
+import postmanPng from '../assets/skills-icon/postman.png'
 
 interface TechIcon {
-  icon: string
+  image: string
   label: string
-  hoverColor: string
 }
 
 export default function Hero() {
@@ -13,10 +25,19 @@ export default function Hero() {
   const { t } = useTranslation()
 
   const techIcons: TechIcon[] = [
-    { icon: 'code_blocks', label: 'React', hoverColor: 'group-hover:text-accent' },
-    { icon: 'data_object', label: 'Vue', hoverColor: 'group-hover:text-secondary' },
-    { icon: 'smartphone', label: 'Native', hoverColor: 'group-hover:text-primary' },
-    { icon: 'api', label: 'API', hoverColor: 'group-hover:text-slate-900 dark:group-hover:text-white' },
+    { image: reactSvg, label: 'React' },
+    { image: vuePng, label: 'Vue.js' },
+    { image: reactNativePng, label: 'React Native' },
+    { image: expoPng, label: 'Expo' },
+    { image: tailwindPng, label: 'Tailwind CSS' },
+    { image: zustandPng, label: 'Zustand' },
+    { image: threePng, label: 'Three.js' },
+    { image: firebasePng, label: 'Firebase' },
+    { image: bootstrapPng, label: 'Bootstrap' },
+    { image: vercelPng, label: 'Vercel' },
+    { image: figmaPng, label: 'Figma' },
+    { image: githubPng, label: 'GitHub' },
+    { image: postmanPng, label: 'Postman' },
   ]
 
   return (
@@ -74,20 +95,23 @@ export default function Hero() {
           </Button>
         </div>
 
-        {/* Tech Stack Icons */}
-        <div className="pt-8 md:pt-12 border-t border-slate-200 dark:border-white/5 w-full max-w-lg mt-4">
-          <p className="text-slate-400 dark:text-slate-500 text-xs uppercase tracking-widest mb-6 font-semibold">{t('hero.tech_label')}</p>
-          <div className="flex justify-center items-center gap-8 text-slate-400">
-            {techIcons.map((tech) => (
-              <div key={tech.label} className="flex flex-col items-center gap-2 group cursor-default relative">
-                <span className={`material-symbols-outlined text-[32px] ${tech.hoverColor} transition-colors`}>
-                  {tech.icon}
-                </span>
-                <span className="text-[10px] opacity-0 group-hover:opacity-100 transition-opacity absolute -bottom-5">
-                  {tech.label}
-                </span>
-              </div>
-            ))}
+        {/* Tech Stack Marquee */}
+        <div className="pt-8 md:pt-12 border-t border-slate-200 dark:border-white/10 w-full mt-4">
+          <div className="overflow-hidden mask-x">
+            <div className="marquee-track flex items-center gap-10 w-max">
+              {[...techIcons, ...techIcons].map((tech, i) => (
+                <div key={`${tech.label}-${i}`} className="flex flex-col items-center gap-2 group cursor-default relative shrink-0">
+                  <img
+                    src={tech.image}
+                    alt={tech.label}
+                    className="size-8 object-contain opacity-50 group-hover:opacity-100 transition-opacity"
+                  />
+                  <span className="text-[10px] text-slate-400 dark:text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity absolute -bottom-5 whitespace-nowrap">
+                    {tech.label}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
