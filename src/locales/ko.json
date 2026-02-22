@@ -3,7 +3,8 @@
     "projects": "프로젝트",
     "skills": "기술 스택",
     "career": "경력",
-    "contact": "연락처"
+    "contact": "연락처",
+    "certs": "자격/수료"
   },
   "hero": {
     "badge": "활동 시작 2023.12",
@@ -34,7 +35,7 @@
       },
       "air": {
         "title": "Air",
-        "description": "Vue.js 기반의 웹 프로젝트입니다. 모던 프론트엔드 기술을 활용하여 사용자 친화적인 인터페이스를 구현했습니다."
+        "description": "TypeScript 기반의 웹 프로젝트입니다. 모던 프론트엔드 기술을 활용하여 사용자 친화적인 인터페이스를 구현했습니다."
       },
       "dwEssong": {
         "title": "DW-essong",
@@ -42,7 +43,7 @@
       },
       "toy": {
         "title": "Toy Project",
-        "description": "다양한 프론트엔드 기술을 실험하고 학습하기 위한 토이 프로젝트 모음입니다."
+        "description": "DW아카데미 1차 팀 프로젝트입니다. HTML, CSS, JavaScript를 활용하여 웹 기초를 다지며 협업 경험을 쌓았습니다."
       }
     }
   },
@@ -66,44 +67,50 @@
     "title": "경력 히스토리",
     "subtitle": "지속적인 성장과 도전의 기록들",
     "summary": "Career Summary",
-    "total_projects": "총 프로젝트 수",
-    "total_projects_unit": "개",
+    "award": "수상 경력",
+    "award_value": "최우수상",
     "active_period": "활동 기간",
-    "active_period_unit": "개월+",
+    "active_period_unit": "년차",
     "core_skills": "핵심 역량",
     "download_resume": "이력서 다운로드",
-    "career_start": "2023.12 - 커리어 시작",
+    "career_start": "2023.05 - 교육 시작",
     "now": "현재",
     "experiences": {
-      "freelancer": {
-        "title": "프론트엔드 프리랜서",
-        "subtitle": "개인 프로젝트 및 외주 개발",
-        "period": "2024.03 - 현재",
-        "description": "React와 Vue.js를 활용하여 다양한 클라이언트의 웹 애플리케이션을 개발하고 있습니다. 사용자 경험 중심의 인터페이스 설계와 성능 최적화에 주력하며, 모던 웹 기술을 적극적으로 도입하여 프로젝트의 완성도를 높이고 있습니다.",
+      "aitron": {
+        "title": "SW 연구원 · 프론트엔드",
+        "subtitle": "(주)아이트론 · 연구원/팀원",
+        "period": "2025.09 - 현재",
+        "description": "IoT 스마트홈 플랫폼의 웹 대시보드와 모바일 앱 프론트엔드를 개발하고 있습니다. React(웹)와 React Native/Expo(앱)를 활용한 크로스 플랫폼 개발을 담당하며, Three.js 3D 시각화, TanStack 기반 데이터 관리, 실시간 디바이스 제어 등을 구현하고 있습니다.",
         "achievements": [
-          "e-Commerce 플랫폼 대시보드 UI 리뉴얼 및 성능 30% 개선",
-          "반응형 기업 포트폴리오 사이트 제작 (Next.js 활용)",
-          "재사용 가능한 커스텀 훅 및 컴포넌트 라이브러리 구축"
+          "ARRON Web - React + TypeScript 기반 IoT 대시보드, Zustand/React Query 상태관리",
+          "ARRON App - React Native + Expo 기반 크로스 플랫폼 모바일 앱 개발",
+          "Three.js/R3F 활용 3D 디바이스 시각화 및 인터랙션 구현",
+          "TanStack Router/Query 기반 타입 세이프 라우팅 및 데이터 캐싱"
         ]
       },
-      "intern": {
-        "title": "테크 스타트업 인턴",
-        "subtitle": "(주)퓨처웨이브",
-        "period": "2024.01 - 2024.02",
-        "description": "초기 단계의 스타트업에서 사내 관리자 페이지 개발에 참여했습니다. Vue.js 생태계를 경험하며 상태 관리 패턴과 컴포넌트 설계에 대한 이해도를 높였습니다.",
+      "assemble": {
+        "title": "프론트엔드 개발자",
+        "subtitle": "(주)에셈블 · 연구원",
+        "period": "2023.12 - 2025.04",
+        "description": "Vue.js 기반의 공공기관 웹 서비스 및 스마트 물관리 플랫폼 프론트엔드 개발을 담당했습니다. Three.js/WebGL 3D 시각화, WebSocket 실시간 데이터 처리, 권한 기반 라우팅 등 다양한 기술을 활용하여 6건의 프로젝트를 수행했습니다.",
         "achievements": [
-          "Vue 3 & Pinia 기반의 사내 인트라넷 게시판 모듈 개발",
-          "Rest API 연동 및 데이터 시각화 차트(Chart.js) 구현"
+          "공공기관 물관리 포털 구축 - 권한/역할 기반 라우팅, SEO 최적화로 구글 노출 확보",
+          "지자체 스마트 정수장 확대 구축 - 설비 모니터링/알람 화면, 재사용 컴포넌트로 커스터마이징 비용 절감",
+          "AI 스마트 물관리 플랫폼 - WebSocket 실시간 데이터 스트림/시뮬레이션 구현",
+          "GPU 엣지 디지털 트윈 - Three.js 기반 3D 씬/인터랙션, WebGL 렌더링 최적화",
+          "디지털 트윈 탄소지도 - UI 디자인 및 프로토타입, 기술 선정 가이드 수립",
+          "정수장 시뮬레이터 - 시나리오 기반 시뮬레이션 로직/상태 전이 구현"
         ]
       },
-      "start": {
-        "title": "커리어 시작",
-        "subtitle": "프론트엔드 개발 입문",
-        "period": "2023.12",
-        "description": "HTML, CSS, JavaScript 기초 학습을 완료하고 본격적인 프론트엔드 개발자로서의 여정을 시작했습니다. 첫 개인 토이 프로젝트를 배포하며 웹 동작 원리에 대해 깊이 탐구했습니다.",
+      "training": {
+        "title": "데이터시각화 UI 개발자 트랙",
+        "subtitle": "DW아카데미학원 · 기업프로젝트",
+        "period": "2023.05 - 2023.10",
+        "description": "HTML, CSS, JavaScript 기초부터 Vue.js, Firebase 활용까지 프론트엔드 개발 전반을 학습했습니다. 팀 프로젝트를 통해 협업 경험을 쌓고, 최우수상을 수상했습니다.",
         "achievements": [
-          "Todo List 및 날씨 정보 웹 앱 제작 (OpenWeatherMap API)",
-          "Git/GitHub를 활용한 버전 관리 학습 시작"
+          "1차 팀 프로젝트 - HTML/CSS/JS 기반 웹 사이트 제작",
+          "2차 팀 프로젝트 (Raonaria) - Vue.js + Firebase 활용 웹 애플리케이션 개발",
+          "NCS 능력단위 이수 및 최우수상 수상"
         ]
       }
     }
@@ -112,6 +119,9 @@
     "title": "연락처",
     "subtitle": "프로젝트 문의, 채용 제안 또는 가벼운 커피챗도 환영합니다.",
     "subtitle2": "함께 성장할 파트너를 찾으시나요?",
+    "card_name": "송은선",
+    "role": "프론트엔드 개발자",
+    "status": "Open to Work",
     "form_title": "메시지 보내기",
     "name": "이름",
     "name_placeholder": "홍길동",
@@ -123,6 +133,46 @@
     "send_success": "전송 완료!",
     "send_error": "전송에 실패했습니다. 다시 시도해주세요.",
     "info_title": "연락처 정보"
+  },
+  "certs": {
+    "title": "자격 및 수료",
+    "subtitle": "전문성을 인정받은 자격증과 교육 이수 내역입니다.",
+    "levels": {
+      "expert": "Expert L2",
+      "engineer": "Engineer L1",
+      "publisher": "Publisher",
+      "top": "최우수상"
+    },
+    "items": {
+      "wsExpert2": {
+        "title": "WebSquare5 Certified Expert",
+        "issuer": "(주)인스웨이브시스템즈"
+      },
+      "wsExpert1": {
+        "title": "WebSquare5 Certified Expert",
+        "issuer": "(주)인스웨이브시스템즈"
+      },
+      "wsEngineer": {
+        "title": "WebSquare5 Certified Engineer",
+        "issuer": "(주)인스웨이브시스템즈"
+      },
+      "wsPublisher": {
+        "title": "WebSquare5 Certified Publisher",
+        "issuer": "(주)인스웨이브시스템즈"
+      },
+      "ncs": {
+        "title": "NCS 능력단위 이수",
+        "issuer": "DW아카데미학원 · UI/UX엔지니어링"
+      },
+      "completion": {
+        "title": "데이터시각화 UI 개발자 트랙 수료",
+        "issuer": "DW아카데미학원 · 기업프로젝트"
+      },
+      "award": {
+        "title": "최우수상 표창장",
+        "issuer": "DW아카데미학원 · 데이터시각화 UI 개발자 트랙"
+      }
+    }
   },
   "theme": {
     "mode": "모드",
@@ -138,7 +188,7 @@
     "cyan": "시안"
   },
   "footer": {
-    "copyright": "© 2024 Frontend Developer Portfolio"
+    "copyright": "© 2023 Frontend Developer Portfolio"
   },
   "lang": {
     "label": "언어",
