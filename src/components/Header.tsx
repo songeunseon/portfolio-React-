@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import ThemeSettings from './ThemeSettings'
 
 interface NavLink {
@@ -11,12 +12,13 @@ interface NavLink {
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const location = useLocation()
+  const { t } = useTranslation()
 
   const navLinks: NavLink[] = [
-    { label: '프로젝트', path: '/projects', icon: 'folder_special' },
-    { label: '기술 스택', path: '/skills', icon: 'layers' },
-    { label: '경력', path: '/career', icon: 'timeline' },
-    { label: '연락처', path: '/contact', icon: 'mail' },
+    { label: t('nav.projects'), path: '/projects', icon: 'folder_special' },
+    { label: t('nav.skills'), path: '/skills', icon: 'layers' },
+    { label: t('nav.career'), path: '/career', icon: 'timeline' },
+    { label: t('nav.contact'), path: '/contact', icon: 'mail' },
   ]
 
   function isActive(path: string): boolean {
@@ -25,10 +27,10 @@ export default function Header() {
 
   return (
     <header className="w-full border-b border-white/5 bg-background-dark/50 backdrop-blur-md sticky top-0 z-50">
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group cursor-pointer">
-          <div className="size-9 sm:size-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center text-white shadow-lg shadow-primary/20 transition-transform group-hover:scale-105">
+          <div className="size-9 sm:size-10 bg-linear-to-br from-primary to-secondary rounded-lg flex items-center justify-center text-white shadow-lg shadow-primary/20 transition-transform group-hover:scale-105">
             <span className="material-symbols-outlined text-[20px] sm:text-[24px]">terminal</span>
           </div>
           <div className="flex flex-col">
@@ -45,6 +47,7 @@ export default function Header() {
           <button
             className="xl:hidden flex items-center justify-center size-10 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-slate-300 hover:text-white transition-all"
             onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           >
             <span className="material-symbols-outlined text-[20px]">{menuOpen ? 'close' : 'menu'}</span>
           </button>

@@ -4,8 +4,9 @@ import Projects from './pages/Projects'
 import TechStack from './pages/TechStack'
 import Career from './pages/Career'
 import Contact from './pages/Contact'
-import Footer from './components/Footer'
+import Certifications from './pages/Certifications'
 import SocialSidebar from './components/SocialSidebar'
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/projects" element={<Projects />} />
           <Route path="/skills" element={<TechStack />} />
           <Route path="/career" element={<Career />} />
+          <Route path="/certifications" element={<Certifications />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
         <SocialSidebar />
