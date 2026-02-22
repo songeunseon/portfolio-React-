@@ -116,7 +116,7 @@ export default function Career() {
 
                   {/* Card */}
                   <div
-                    className={`bg-white dark:bg-surface-card hover:bg-slate-50 dark:hover:bg-white/5 border border-slate-200 dark:border-white/10 p-6 md:p-8 rounded-2xl transition-all duration-300 ${exp.hoverBorder} hover:-translate-y-1 hover:shadow-xl ${exp.hoverShadow}`}
+                    className={`bg-white dark:bg-surface-card hover:bg-slate-50 dark:hover:bg-white/5 border border-slate-200 dark:border-white/10 p-6 md:p-8 rounded-2xl transition-all duration-300 ${exp.hoverBorder} hover:-translate-y-1 hover:shadow-xl ${exp.hoverShadow} overflow-hidden`}
                   >
                     {/* Card Header */}
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
@@ -129,7 +129,7 @@ export default function Career() {
                         <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">{subtitle}</p>
                       </div>
                       <span
-                        className={`inline-flex items-center px-3 py-1 rounded-full ${exp.periodBg} text-xs font-medium border`}
+                        className={`inline-flex items-center px-3 py-1 rounded-full ${exp.periodBg} text-xs font-medium border shrink-0 self-start`}
                       >
                         {period}
                       </span>
@@ -153,7 +153,7 @@ export default function Career() {
                     </ul>
 
                     {/* Tags */}
-                    <div className="flex gap-2 mt-6">
+                    <div className="flex flex-wrap gap-2 mt-6">
                       {exp.tags.map((tag) => (
                         <span
                           key={tag}
