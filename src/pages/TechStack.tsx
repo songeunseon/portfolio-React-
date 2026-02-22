@@ -1,7 +1,26 @@
 import { useTranslation } from 'react-i18next'
 
+import reactSvg from '../assets/skills-icon/react.svg'
+import vuePng from '../assets/skills-icon/vue.png'
+import vercelPng from '../assets/skills-icon/vercel.png'
+import expoPng from '../assets/skills-icon/expo.png'
+import githubPng from '../assets/skills-icon/github.png'
+import figmaPng from '../assets/skills-icon/figma.png'
+import zeplinPng from '../assets/skills-icon/zeplin.png'
+import canvaPng from '../assets/skills-icon/canva.png'
+import firebasePng from '../assets/skills-icon/firebase.png'
+import googleCloudPng from '../assets/skills-icon/google-cloud.png'
+import postmanPng from '../assets/skills-icon/postman.png'
+import vscodePng from '../assets/skills-icon/visual-studio-code.png'
+import reactNativePng from '../assets/skills-icon/react-native.png'
+import tailwindPng from '../assets/skills-icon/tailwind.png'
+import zustandPng from '../assets/skills-icon/zustand.png'
+import threePng from '../assets/skills-icon/three.png'
+import bootstrapPng from '../assets/skills-icon/bootstrap.png'
+
 interface Skill {
   icon: string
+  iconImage?: string
   name: string
   badge: string
   badgeColor: string
@@ -18,6 +37,7 @@ interface Skill {
 
 interface Tool {
   icon: string
+  iconImage?: string
   color: string
   label: string
 }
@@ -25,23 +45,25 @@ interface Tool {
 const skills: Skill[] = [
   {
     icon: 'code_blocks',
+    iconImage: reactSvg,
     name: 'React',
-    badge: 'Main Stack',
+    badge: 'Web',
     badgeColor: 'text-accent',
-    percent: 90,
-    levelKey: 'skills.levels.expert',
+    percent: 85,
+    levelKey: 'skills.levels.proficient',
     borderHover: 'hover:border-accent/30',
     iconBg: 'bg-accent/10 text-accent group-hover:bg-accent group-hover:text-black',
     barGradient: 'from-blue-400 to-accent',
     barShadow: 'shadow-[0_0_10px_rgba(97,218,251,0.5)]',
     tagHover: 'hover:border-accent/50 hover:text-accent',
     descriptionKey: 'skills.descriptions.react',
-    tags: ['Next.js', 'Redux Toolkit', 'Recoil', 'React Query', 'Styled Components'],
+    tags: ['Zustand', 'React Query', 'TanStack Router', 'Tailwind CSS', 'shadcn/ui', 'Three.js'],
   },
   {
     icon: 'data_object',
+    iconImage: vuePng,
     name: 'Vue.js',
-    badge: 'Core Skill',
+    badge: 'Web',
     badgeColor: 'text-secondary',
     percent: 85,
     levelKey: 'skills.levels.proficient',
@@ -51,37 +73,48 @@ const skills: Skill[] = [
     barShadow: 'shadow-[0_0_10px_rgba(65,184,131,0.5)]',
     tagHover: 'hover:border-secondary/50 hover:text-secondary',
     descriptionKey: 'skills.descriptions.vue',
-    tags: ['Nuxt.js', 'Pinia', 'Vuex', 'Vuetify'],
+    tags: ['Pinia', 'Vue Router', 'Bootstrap', 'Chart.js', 'Firebase'],
   },
   {
     icon: 'smartphone',
+    iconImage: reactNativePng,
     name: 'React Native',
     badge: 'Mobile',
     badgeColor: 'text-primary',
-    percent: 70,
-    levelKey: 'skills.levels.capable',
+    percent: 85,
+    levelKey: 'skills.levels.proficient',
     borderHover: 'hover:border-primary/30',
     iconBg: 'bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white',
     barGradient: 'from-indigo-400 to-primary',
     barShadow: 'shadow-[0_0_10px_rgba(37,37,244,0.5)]',
     tagHover: 'hover:border-primary/50 hover:text-primary',
     descriptionKey: 'skills.descriptions.rn',
-    tags: ['Expo', 'Reanimated', 'React Navigation'],
+    tags: ['Expo Router', 'Zustand', 'React Query', 'HeroUI Native', 'Reanimated'],
   },
 ]
 
 const tools: Tool[] = [
-  { icon: 'terminal', color: 'text-orange-500', label: 'Git & GitHub' },
-  { icon: 'flutter', color: 'text-blue-500', label: 'Figma' },
-  { icon: 'warning', color: 'text-yellow-500', label: 'Jira & Slack' },
-  { icon: 'cloud', color: 'text-purple-500', label: 'Vercel & Netlify' },
+  { icon: 'terminal', iconImage: githubPng, color: 'text-orange-500', label: 'Git & GitHub' },
+  { icon: 'flutter', iconImage: figmaPng, color: 'text-blue-500', label: 'Figma' },
+  { icon: 'cloud', iconImage: vercelPng, color: 'text-purple-500', label: 'Vercel & Netlify' },
+  { icon: 'smartphone', iconImage: expoPng, color: 'text-slate-500', label: 'Expo' },
+  { icon: 'palette', iconImage: zeplinPng, color: 'text-pink-500', label: 'Zeplin' },
+  { icon: 'brush', iconImage: canvaPng, color: 'text-cyan-500', label: 'Canva' },
+  { icon: 'local_fire_department', iconImage: firebasePng, color: 'text-amber-500', label: 'Firebase' },
+  { icon: 'search', iconImage: googleCloudPng, color: 'text-green-500', label: 'Google Console' },
+  { icon: 'api', iconImage: postmanPng, color: 'text-orange-400', label: 'Postman' },
+  { icon: 'code', iconImage: vscodePng, color: 'text-blue-400', label: 'VS Code' },
+  { icon: 'css', iconImage: tailwindPng, color: 'text-sky-400', label: 'Tailwind CSS' },
+  { icon: 'store', iconImage: zustandPng, color: 'text-amber-600', label: 'Zustand' },
+  { icon: '3d_rotation', iconImage: threePng, color: 'text-slate-400', label: 'Three.js' },
+  { icon: 'grid_view', iconImage: bootstrapPng, color: 'text-violet-500', label: 'Bootstrap' },
 ]
 
 export default function TechStack() {
   const { t } = useTranslation()
 
   return (
-    <main className="grow flex flex-col items-center px-6 py-20 relative">
+    <main className="grow flex flex-col items-center px-6 py-16 relative">
       <div className="max-w-7xl w-full flex flex-col gap-12">
         {/* Page Header */}
         <div
@@ -106,13 +139,17 @@ export default function TechStack() {
           {skills.map((skill) => (
             <div
               key={skill.name}
-              className={`bg-white/60 dark:bg-surface-dark/50 backdrop-blur-sm border border-slate-200 dark:border-white/5 rounded-2xl p-8 ${skill.borderHover} transition-all duration-300 group hover:-translate-y-1 hover:bg-white dark:hover:bg-surface-dark shadow-xl`}
+              className={`bg-white/60 dark:bg-surface-dark/50 backdrop-blur-sm border border-slate-200 dark:border-white/10 rounded-2xl p-8 ${skill.borderHover} transition-all duration-300 group hover:-translate-y-1 hover:bg-white dark:hover:bg-surface-dark shadow-xl`}
             >
               {/* Header */}
               <div className="flex items-center justify-between mb-8">
                 <div className="flex items-center gap-4">
                   <div className={`p-3 rounded-xl ${skill.iconBg} transition-colors`}>
-                    <span className="material-symbols-outlined text-[32px]">{skill.icon}</span>
+                    {skill.iconImage ? (
+                      <img src={skill.iconImage} alt={skill.name} className="size-8 object-contain" />
+                    ) : (
+                      <span className="material-symbols-outlined text-[32px]">{skill.icon}</span>
+                    )}
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-slate-900 dark:text-white">{skill.name}</h3>
@@ -142,7 +179,7 @@ export default function TechStack() {
                 <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed min-h-10">
                   {t(skill.descriptionKey)}
                 </p>
-                <div className="flex flex-wrap gap-2 pt-2 border-t border-slate-200 dark:border-white/5">
+                <div className="flex flex-wrap gap-2 pt-2 border-t border-slate-200 dark:border-white/10">
                   {skill.tags.map((tag) => (
                     <span
                       key={tag}
@@ -158,18 +195,22 @@ export default function TechStack() {
         </div>
 
         {/* Tools Section */}
-        <div className="mt-8 border-t border-slate-200 dark:border-white/5 pt-12">
+        <div className="mt-8 border-t border-slate-200 dark:border-white/10 pt-12">
           <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
             <span className="w-1.5 h-6 bg-slate-400 dark:bg-slate-500 rounded-full" />
             {t('skills.tools_title')}
           </h4>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
             {tools.map((tool) => (
               <div
                 key={tool.label}
-                className="flex items-center gap-3 p-4 bg-white dark:bg-surface-light rounded-lg border border-slate-200 dark:border-white/5"
+                className="flex items-center gap-3 p-4 bg-white dark:bg-surface-light rounded-lg border border-slate-200 dark:border-white/10"
               >
-                <span className={`material-symbols-outlined ${tool.color}`}>{tool.icon}</span>
+                {tool.iconImage ? (
+                  <img src={tool.iconImage} alt={tool.label} className="size-5 object-contain" />
+                ) : (
+                  <span className={`material-symbols-outlined ${tool.color}`}>{tool.icon}</span>
+                )}
                 <span className="text-sm text-slate-600 dark:text-slate-300">{tool.label}</span>
               </div>
             ))}
