@@ -82,8 +82,8 @@
         "period": "2025.09 - 현재",
         "description": "IoT 스마트홈 플랫폼의 웹 대시보드와 모바일 앱 프론트엔드를 개발하고 있습니다. React(웹)와 React Native/Expo(앱)를 활용한 크로스 플랫폼 개발을 담당하며, Three.js 3D 시각화, TanStack 기반 데이터 관리, 실시간 디바이스 제어 등을 구현하고 있습니다.",
         "achievements": [
-          "ARRON Web - React + TypeScript 기반 IoT 대시보드, Zustand/React Query 상태관리",
-          "ARRON App - React Native + Expo 기반 크로스 플랫폼 모바일 앱 개발",
+          "Web - React + TypeScript 기반 IoT 대시보드, Zustand/React Query 상태관리",
+          "App - React Native + Expo 기반 크로스 플랫폼 모바일 앱 개발",
           "Three.js/R3F 활용 3D 디바이스 시각화 및 인터랙션 구현",
           "TanStack Router/Query 기반 타입 세이프 라우팅 및 데이터 캐싱"
         ]
@@ -188,7 +188,7 @@
     "cyan": "시안"
   },
   "footer": {
-    "copyright": "© 2023 Frontend Developer Portfolio"
+    "copyright": "© 2026 Frontend Developer Portfolio"
   },
   "lang": {
     "label": "언어",

@@ -82,8 +82,8 @@
         "period": "2025.09 - Present",
         "description": "Developing the web dashboard and mobile app frontend for the IoT smart home platform. Handling cross-platform development with React (web) and React Native/Expo (app), implementing Three.js 3D visualization, TanStack-based data management, and real-time device control.",
         "achievements": [
-          "ARRON Web - React + TypeScript IoT dashboard with Zustand/React Query state management",
-          "ARRON App - React Native + Expo cross-platform mobile app development",
+          "Web - React + TypeScript IoT dashboard with Zustand/React Query state management",
+          "App - React Native + Expo cross-platform mobile app development",
           "Three.js/R3F 3D device visualization and interaction implementation",
           "TanStack Router/Query type-safe routing and data caching"
         ]
@@ -188,7 +188,7 @@
     "cyan": "Cyan"
   },
   "footer": {
-    "copyright": "© 2023 Frontend Developer Portfolio"
+    "copyright": "© 2026 Frontend Developer Portfolio"
   },
   "lang": {
     "label": "Language",
